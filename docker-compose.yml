@@ -1,0 +1,14 @@
+services:
+  labmoon-web:
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_SUPABASE_URL
+        - NEXT_PUBLIC_SUPABASE_ANON_KEY
+        - NEXT_PUBLIC_ACADEMY_ENABLED
+    container_name: labmoon-web
+    restart: always
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production

@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #141534;
+  --color-primary: #141534;
+  --color-secondary: #ff6600;
+  --color-accent: #ff6600;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #141534;
+  --primary: #141534;
+  --accent: #ff6600;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar - Labmoon Palette */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #141534;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6600;
+}
+
+/* Glassmorphism - High Contrast */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(20, 21, 52, 0.1);
+  box-shadow: 0 4px 20px rgba(20, 21, 52, 0.05);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #141534, #ff6600);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-orange {
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+}
+
+.glow-navy {
+  box-shadow: 0 10px 30px rgba(20, 21, 52, 0.1);
+}
