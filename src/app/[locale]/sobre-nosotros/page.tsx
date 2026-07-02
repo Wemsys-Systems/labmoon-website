@@ -7,6 +7,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'About Us' : 'Sobre Nosotros',
+    description: isEn ? 'Meet Labmoon. European blockchain forensic experts dedicated to tracing digital assets and fighting crypto fraud.' : 'Conoce Labmoon. Expertos europeos en forensia blockchain dedicados al rastreo de activos digitales y la lucha contra el fraude crypto.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/sobre-nosotros',
+      languages: {
+        es: 'https://labmoon.eu/es/sobre-nosotros',
+        en: 'https://labmoon.eu/en/sobre-nosotros',
+      },
+    },
+  };
+}
+
 export default async function SobreNosotrosPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -42,27 +58,27 @@ export default async function SobreNosotrosPage({ params }: Props) {
               <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-6">
                 <Target className="w-7 h-7 text-[#ff6600]" />
               </div>
-              <h3 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('mision_title')}</h3>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                {t('mision_desc')}
-              </p>
-            </div>
+              <h2 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('mision_title')}</h2>
+               <p className="text-slate-500 font-medium leading-relaxed">
+                 {t('mision_desc')}
+               </p>
+             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 transition-transform hover:-translate-y-2">
-              <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
-                <Shield className="w-7 h-7 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('vision_title')}</h3>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                {t('vision_desc')}
-              </p>
-            </div>
+             <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 transition-transform hover:-translate-y-2">
+               <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                 <Shield className="w-7 h-7 text-blue-600" />
+               </div>
+               <h2 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('vision_title')}</h2>
+               <p className="text-slate-500 font-medium leading-relaxed">
+                 {t('vision_desc')}
+               </p>
+             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 transition-transform hover:-translate-y-2">
-              <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
-                <Users className="w-7 h-7 text-emerald-600" />
-              </div>
-              <h3 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('equipo_title')}</h3>
+             <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 transition-transform hover:-translate-y-2">
+               <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
+                 <Users className="w-7 h-7 text-emerald-600" />
+               </div>
+               <h2 className="text-2xl font-outfit font-bold text-[#141534] mb-4">{t('equipo_title')}</h2>
               <p className="text-slate-500 font-medium leading-relaxed">
                 {t('equipo_desc')}
               </p>

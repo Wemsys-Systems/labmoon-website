@@ -8,6 +8,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Cryptocurrency Tracing' : 'Rastreo de Criptomonedas',
+    description: isEn ? 'Professional cryptocurrency tracing service. Track stolen or lost crypto assets across blockchain networks.' : 'Servicio profesional de rastreo de criptomonedas. Localizamos activos crypto robados o perdidos en redes blockchain.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios/rastreo-criptomonedas',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios/rastreo-criptomonedas',
+        en: 'https://labmoon.eu/en/servicios/rastreo-criptomonedas',
+      },
+    },
+  };
+}
+
 export default async function RastreoCriptoPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -44,25 +60,25 @@ export default async function RastreoCriptoPage({ params }: Props) {
                   <Map className="w-6 h-6 text-[#ff6600]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-[#141534] mb-2">{t('feature_trazabilidad_title')}</h4>
-                  <p className="text-slate-500">{t('feature_trazabilidad_desc')}</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-                  <Eye className="w-6 h-6 text-[#141534]" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-[#141534] mb-2">{t('feature_clustering_title')}</h4>
-                  <p className="text-slate-500">{t('feature_clustering_desc')}</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-[#141534] mb-2">{t('feature_identificacion_title')}</h4>
+                  <h3 className="font-bold text-lg text-[#141534] mb-2">{t('feature_trazabilidad_title')}</h3>
+                   <p className="text-slate-500">{t('feature_trazabilidad_desc')}</p>
+                 </div>
+               </div>
+               <div className="flex gap-4">
+                 <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                   <Eye className="w-6 h-6 text-[#141534]" />
+                 </div>
+                 <div>
+                   <h3 className="font-bold text-lg text-[#141534] mb-2">{t('feature_clustering_title')}</h3>
+                   <p className="text-slate-500">{t('feature_clustering_desc')}</p>
+                 </div>
+               </div>
+               <div className="flex gap-4">
+                 <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+                   <ShieldCheck className="w-6 h-6 text-green-600" />
+                 </div>
+                 <div>
+                   <h3 className="font-bold text-lg text-[#141534] mb-2">{t('feature_identificacion_title')}</h3>
                   <p className="text-slate-500">{t('feature_identificacion_desc')}</p>
                 </div>
               </div>
@@ -70,7 +86,7 @@ export default async function RastreoCriptoPage({ params }: Props) {
           </div>
           
           <div className="bg-slate-50 p-10 rounded-[3rem] border border-slate-100 shadow-xl relative">
-            <h3 className="text-2xl font-bold text-[#141534] mb-6">{t('sidebar_title')}</h3>
+            <h2 className="text-2xl font-bold text-[#141534] mb-6">{t('sidebar_title')}</h2>
             <ul className="space-y-4 font-medium text-slate-600">
               <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-[#ff6600]" /> {t('sidebar_item1')}</li>
               <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-[#ff6600]" /> {t('sidebar_item2')}</li>

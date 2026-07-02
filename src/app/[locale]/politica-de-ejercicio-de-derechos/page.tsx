@@ -6,6 +6,22 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Rights Exercise Policy' : 'Política de Ejercicio de Derechos',
+    description: isEn ? 'Exercise your data protection rights. Information on how to access, rectify or delete your personal data.' : 'Ejerce tus derechos de protección de datos. Información sobre cómo acceder, rectificar o eliminar tus datos personales.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/politica-de-ejercicio-de-derechos',
+      languages: {
+        es: 'https://labmoon.eu/es/politica-de-ejercicio-de-derechos',
+        en: 'https://labmoon.eu/en/politica-de-ejercicio-de-derechos',
+      },
+    },
+  };
+}
+
 export default async function PoliticaDerechosPage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)

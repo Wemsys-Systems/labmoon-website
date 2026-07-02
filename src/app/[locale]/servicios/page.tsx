@@ -9,6 +9,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Services' : 'Servicios',
+    description: isEn ? 'Blockchain forensic services: cryptocurrency tracing, expert reports, legal advice, compliance and forensic analysis.' : 'Servicios de peritaje blockchain: rastreo de criptomonedas, informes periciales, asesoría legal, compliance y análisis forense.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios',
+        en: 'https://labmoon.eu/en/servicios',
+      },
+    },
+  };
+}
+
 export default async function ServiciosPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

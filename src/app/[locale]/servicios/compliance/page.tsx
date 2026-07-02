@@ -8,6 +8,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Blockchain Compliance' : 'Compliance Blockchain',
+    description: isEn ? 'Blockchain compliance consulting. AML/KYC procedures, regulatory compliance and risk assessment for crypto businesses.' : 'Consultoría de compliance blockchain. Procedimientos AML/KYC, cumplimiento normativo y evaluación de riesgos para empresas crypto.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios/compliance',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios/compliance',
+        en: 'https://labmoon.eu/en/servicios/compliance',
+      },
+    },
+  };
+}
+
 export default async function CompliancePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

@@ -6,6 +6,22 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Cookie Policy' : 'Política de Cookies',
+    description: isEn ? 'Labmoon cookie policy. Information about the cookies we use and how to manage your preferences.' : 'Política de cookies de Labmoon. Información sobre las cookies que utilizamos y cómo gestionar tus preferencias.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/politicas-de-cookies',
+      languages: {
+        es: 'https://labmoon.eu/es/politicas-de-cookies',
+        en: 'https://labmoon.eu/en/politicas-de-cookies',
+      },
+    },
+  };
+}
+
 export default async function PoliticasCookiesPage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)

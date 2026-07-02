@@ -8,6 +8,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Blockchain Expert Reports' : 'Informes Periciales Blockchain',
+    description: isEn ? 'Blockchain expert reports with legal validity for court proceedings. Certified forensic analysis of digital assets.' : 'Informes periciales blockchain con validez judicial. Análisis forense certificado de activos digitales para procedimientos legales.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios/informes-periciales',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios/informes-periciales',
+        en: 'https://labmoon.eu/en/servicios/informes-periciales',
+      },
+    },
+  };
+}
+
 export default async function InformesPericialesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -38,26 +54,26 @@ export default async function InformesPericialesPage({ params }: Props) {
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="bg-[#141534] p-10 rounded-[3rem] shadow-2xl relative overflow-hidden text-white">
              <div className="absolute top-0 right-0 w-40 h-40 bg-[#ff6600]/20 blur-3xl" />
-             <h3 className="text-3xl font-bold mb-8 relative z-10">{t('que_incluye_title')}</h3>
+             <h2 className="text-3xl font-bold mb-8 relative z-10">{t('que_incluye_title')}</h2>
              <ul className="space-y-6 relative z-10">
                 <li className="flex gap-4 items-start">
                    <FileCheck className="w-6 h-6 text-[#ff6600] shrink-0" />
                    <div>
-                     <h5 className="font-bold mb-1">{t('incluye_descripcion_tecnica_title')}</h5>
+                     <h3 className="font-bold mb-1">{t('incluye_descripcion_tecnica_title')}</h3>
                      <p className="text-slate-400 text-sm">{t('incluye_descripcion_tecnica_desc')}</p>
                    </div>
                 </li>
                 <li className="flex gap-4 items-start">
                    <FileSignature className="w-6 h-6 text-[#ff6600] shrink-0" />
                    <div>
-                     <h5 className="font-bold mb-1">{t('incluye_evidencias_title')}</h5>
+                     <h3 className="font-bold mb-1">{t('incluye_evidencias_title')}</h3>
                      <p className="text-slate-400 text-sm">{t('incluye_evidencias_desc')}</p>
                    </div>
                 </li>
                 <li className="flex gap-4 items-start">
                    <Gavel className="w-6 h-6 text-[#ff6600] shrink-0" />
                    <div>
-                     <h5 className="font-bold mb-1">{t('incluye_ratificacion_title')}</h5>
+                     <h3 className="font-bold mb-1">{t('incluye_ratificacion_title')}</h3>
                      <p className="text-slate-400 text-sm">{t('incluye_ratificacion_desc')}</p>
                    </div>
                 </li>

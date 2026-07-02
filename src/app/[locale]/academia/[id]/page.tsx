@@ -7,6 +7,26 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Course' : 'Curso',
+    description: isEn ? 'Blockchain and cryptocurrency course. Expert training in blockchain forensics and crypto analysis.' : 'Curso de blockchain y criptomonedas. Formación experta en forensia blockchain y análisis crypto.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/academia',
+      languages: {
+        es: 'https://labmoon.eu/es/academia',
+        en: 'https://labmoon.eu/en/academia',
+      },
+    },
+  };
+}
+
 export default async function CourseViewer({ params, searchParams }: { params: Promise<{ id: string }>, searchParams: Promise<{ [key: string]: string | undefined }> }) {
   const { id } = await params;
   const { modulo } = await searchParams;

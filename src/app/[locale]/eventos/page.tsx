@@ -7,6 +7,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Events' : 'Eventos',
+    description: isEn ? 'Blockchain forensics events. Conferences, workshops and webinars on cryptocurrency tracing and blockchain analysis.' : 'Eventos de forensia blockchain. Conferencias, talleres y webinars sobre rastreo de criptomonedas y análisis blockchain.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/eventos',
+      languages: {
+        es: 'https://labmoon.eu/es/eventos',
+        en: 'https://labmoon.eu/en/eventos',
+      },
+    },
+  };
+}
+
 export default async function EventosPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

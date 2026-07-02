@@ -7,6 +7,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Blog' : 'Blog',
+    description: isEn ? 'Blockchain forensics blog. News, analysis and articles about cryptocurrency tracing, blockchain technology and crypto crime.' : 'Blog de forensia blockchain. Noticias, análisis y artículos sobre rastreo de criptomonedas, tecnología blockchain y crypto crimen.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/blog',
+      languages: {
+        es: 'https://labmoon.eu/es/blog',
+        en: 'https://labmoon.eu/en/blog',
+      },
+    },
+  };
+}
+
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

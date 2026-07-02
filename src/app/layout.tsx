@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -29,7 +30,6 @@ export const metadata: Metadata = {
         alt: "Labmoon Peritaje Blockchain",
       },
     ],
-    locale: "es_ES",
     type: "website",
   },
   twitter: {
@@ -52,13 +52,48 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#141534",
+  colorScheme: "light",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Labmoon",
+  url: "https://labmoon.eu",
+  logo: "https://labmoon.eu/logo.png",
+  description: "Blockchain forensic analysis, cryptocurrency tracing, and crypto judicial expert reports.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "",
+    contactType: "customer service",
+    email: "info@labmoon.eu",
+    availableLanguage: ["Spanish", "English"],
+  },
+  sameAs: [
+    "https://twitter.com/InfoLabmoon",
+    "https://linkedin.com/company/labmoon",
+  ],
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang={locale} className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-white text-[#141534]`}
       >

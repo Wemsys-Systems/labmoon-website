@@ -8,6 +8,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Forensic Analysis' : 'Análisis Forense',
+    description: isEn ? 'Deep blockchain forensic analysis. Investigate suspicious transactions, smart contracts and wallet activity.' : 'Análisis forense blockchain en profundidad. Investigación de transacciones sospechosas, smart contracts y actividad de wallets.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios/analisis-forense',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios/analisis-forense',
+        en: 'https://labmoon.eu/en/servicios/analisis-forense',
+      },
+    },
+  };
+}
+
 export default async function AnalisisForensePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -39,27 +55,27 @@ export default async function AnalisisForensePage({ params }: Props) {
               <div className="w-14 h-14 bg-[#141534] rounded-2xl flex items-center justify-center mb-6">
                 <Terminal className="w-6 h-6 text-[#ff6600]" />
               </div>
-              <h3 className="text-xl font-bold text-[#141534] mb-4">{t('feature_auditoria_title')}</h3>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                {t('feature_auditoria_desc')}
-              </p>
-            </div>
+              <h2 className="text-xl font-bold text-[#141534] mb-4">{t('feature_auditoria_title')}</h2>
+               <p className="text-slate-500 font-medium leading-relaxed">
+                 {t('feature_auditoria_desc')}
+               </p>
+             </div>
 
-            <div className="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200/50 hover:border-orange-200 transition-colors group">
-              <div className="w-14 h-14 bg-[#141534] rounded-2xl flex items-center justify-center mb-6">
-                <Lock className="w-6 h-6 text-[#ff6600]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#141534] mb-4">{t('feature_wallets_title')}</h3>
-              <p className="text-slate-500 font-medium leading-relaxed">
-                {t('feature_wallets_desc')}
-              </p>
-            </div>
+             <div className="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200/50 hover:border-orange-200 transition-colors group">
+               <div className="w-14 h-14 bg-[#141534] rounded-2xl flex items-center justify-center mb-6">
+                 <Lock className="w-6 h-6 text-[#ff6600]" />
+               </div>
+               <h2 className="text-xl font-bold text-[#141534] mb-4">{t('feature_wallets_title')}</h2>
+               <p className="text-slate-500 font-medium leading-relaxed">
+                 {t('feature_wallets_desc')}
+               </p>
+             </div>
 
-            <div className="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200/50 hover:border-orange-200 transition-colors group">
-              <div className="w-14 h-14 bg-[#141534] rounded-2xl flex items-center justify-center mb-6">
-                <ShieldAlert className="w-6 h-6 text-[#ff6600]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#141534] mb-4">{t('feature_incidentes_title')}</h3>
+             <div className="p-8 rounded-[2rem] border border-slate-100 bg-white shadow-xl shadow-slate-200/50 hover:border-orange-200 transition-colors group">
+               <div className="w-14 h-14 bg-[#141534] rounded-2xl flex items-center justify-center mb-6">
+                 <ShieldAlert className="w-6 h-6 text-[#ff6600]" />
+               </div>
+               <h2 className="text-xl font-bold text-[#141534] mb-4">{t('feature_incidentes_title')}</h2>
               <p className="text-slate-500 font-medium leading-relaxed">
                 {t('feature_incidentes_desc')}
               </p>

@@ -7,6 +7,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'News' : 'Noticias',
+    description: isEn ? 'Latest news in blockchain forensics, cryptocurrency regulation and digital asset investigations.' : 'Últimas noticias en forensia blockchain, regulación de criptomonedas e investigaciones de activos digitales.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/noticias',
+      languages: {
+        es: 'https://labmoon.eu/es/noticias',
+        en: 'https://labmoon.eu/en/noticias',
+      },
+    },
+  };
+}
+
 export default async function NoticiasPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

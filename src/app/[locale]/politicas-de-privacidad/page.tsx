@@ -6,6 +6,22 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Privacy Policy' : 'Política de Privacidad',
+    description: isEn ? 'Labmoon privacy policy. Information about how we collect, use and protect your personal data.' : 'Política de privacidad de Labmoon. Información sobre cómo recogemos, usamos y protegemos tus datos personales.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/politicas-de-privacidad',
+      languages: {
+        es: 'https://labmoon.eu/es/politicas-de-privacidad',
+        en: 'https://labmoon.eu/en/politicas-de-privacidad',
+      },
+    },
+  };
+}
+
 export default async function PoliticaPrivacidadPage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)

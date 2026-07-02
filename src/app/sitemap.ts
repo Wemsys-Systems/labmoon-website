@@ -17,6 +17,10 @@ const pages = [
   { path: 'noticias', changeFrequency: 'weekly' as const, priority: 0.7 },
   { path: 'eventos', changeFrequency: 'weekly' as const, priority: 0.7 },
   { path: 'contacto', changeFrequency: 'monthly' as const, priority: 0.9 },
+  { path: 'politicas-de-privacidad', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { path: 'politicas-de-cookies', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { path: 'condiciones-generales-de-uso', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { path: 'politica-de-ejercicio-de-derechos', changeFrequency: 'yearly' as const, priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

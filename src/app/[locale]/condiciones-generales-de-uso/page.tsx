@@ -6,6 +6,22 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Terms of Service' : 'Condiciones de Uso',
+    description: isEn ? 'Labmoon terms of service. Conditions governing the use of our website and blockchain forensic services.' : 'Condiciones de uso de Labmoon. Términos que rigen el uso de nuestra web y servicios de forensia blockchain.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/condiciones-generales-de-uso',
+      languages: {
+        es: 'https://labmoon.eu/es/condiciones-generales-de-uso',
+        en: 'https://labmoon.eu/en/condiciones-generales-de-uso',
+      },
+    },
+  };
+}
+
 export default async function CondicionesDeUsoPage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)

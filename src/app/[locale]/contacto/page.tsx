@@ -7,6 +7,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Contact' : 'Contacto',
+    description: isEn ? 'Contact Labmoon. Get in touch for blockchain forensic services, expert reports or legal advice.' : 'Contacta con Labmoon. Ponte en contacto para servicios de forensia blockchain, informes periciales o asesoría legal.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/contacto',
+      languages: {
+        es: 'https://labmoon.eu/es/contacto',
+        en: 'https://labmoon.eu/en/contacto',
+      },
+    },
+  };
+}
+
 export default async function Contacto({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -37,7 +53,7 @@ export default async function Contacto({ params }: Props) {
                     <Mail className="text-[#ff6600] w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_email_label')}</h4>
+                    <h2 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_email_label')}</h2>
                     <p className="text-lg font-bold text-[#141534]">{t('contact_email_value')}</p>
                   </div>
                 </div>
@@ -47,7 +63,7 @@ export default async function Contacto({ params }: Props) {
                     <Phone className="text-[#141534] w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_telefono_label')}</h4>
+                    <h2 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_telefono_label')}</h2>
                     <p className="text-lg font-bold text-[#141534]">{t('contact_telefono_value')}</p>
                   </div>
                 </div>
@@ -57,7 +73,7 @@ export default async function Contacto({ params }: Props) {
                     <MapPin className="text-rose-500 w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_ubicacion_label')}</h4>
+                    <h2 className="font-black text-xs uppercase tracking-widest text-slate-400 mb-2">{t('contact_ubicacion_label')}</h2>
                     <p className="text-lg font-bold text-[#141534]">{t('contact_ubicacion_value')}</p>
                   </div>
                 </div>

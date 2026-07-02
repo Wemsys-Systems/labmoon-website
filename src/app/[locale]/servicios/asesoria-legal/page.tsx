@@ -8,6 +8,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Legal Advice' : 'Asesoría Legal',
+    description: isEn ? 'Specialized legal advice on crypto assets, blockchain regulation and digital evidence for legal proceedings.' : 'Asesoría legal especializada en activos crypto, regulación blockchain y evidencia digital para procedimientos judiciales.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/servicios/asesoria-legal',
+      languages: {
+        es: 'https://labmoon.eu/es/servicios/asesoria-legal',
+        en: 'https://labmoon.eu/en/servicios/asesoria-legal',
+      },
+    },
+  };
+}
+
 export default async function AsesoriaLegalPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -43,27 +59,27 @@ export default async function AsesoriaLegalPage({ params }: Props) {
                   <Briefcase className="w-8 h-8 text-[#ff6600]" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_soporte_title')}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{t('feature_soporte_desc')}</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
-                  <Users className="w-8 h-8 text-[#141534]" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_herencias_title')}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{t('feature_herencias_desc')}</p>
-                </div>
-              </div>
+                  <h2 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_soporte_title')}</h2>
+                   <p className="text-slate-500 font-medium leading-relaxed">{t('feature_soporte_desc')}</p>
+                 </div>
+               </div>
+               
+               <div className="flex gap-6">
+                 <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
+                   <Users className="w-8 h-8 text-[#141534]" />
+                 </div>
+                 <div>
+                   <h2 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_herencias_title')}</h2>
+                   <p className="text-slate-500 font-medium leading-relaxed">{t('feature_herencias_desc')}</p>
+                 </div>
+               </div>
 
-              <div className="flex gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0">
-                  <FileBarChart className="w-8 h-8 text-[#ff6600]" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_valoracion_title')}</h3>
+               <div className="flex gap-6">
+                 <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0">
+                   <FileBarChart className="w-8 h-8 text-[#ff6600]" />
+                 </div>
+                 <div>
+                   <h2 className="text-2xl font-bold text-[#141534] mb-3">{t('feature_valoracion_title')}</h2>
                   <p className="text-slate-500 font-medium leading-relaxed">{t('feature_valoracion_desc')}</p>
                 </div>
               </div>
@@ -71,7 +87,7 @@ export default async function AsesoriaLegalPage({ params }: Props) {
 
             <div className="bg-[#141534] p-12 rounded-[3rem] text-center text-white flex flex-col justify-center relative overflow-hidden">
                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_100%_0%,rgba(255,102,0,0.1)_0%,transparent_50%)]" />
-               <h3 className="text-3xl font-bold mb-6">{t('cta_box_title')}</h3>
+               <h2 className="text-3xl font-bold mb-6">{t('cta_box_title')}</h2>
                <p className="text-slate-400 mb-10 leading-relaxed font-medium">
                  {t('cta_box_desc')}
                </p>

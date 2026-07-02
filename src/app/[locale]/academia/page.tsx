@@ -11,6 +11,22 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  return {
+    title: isEn ? 'Academy' : 'Academia',
+    description: isEn ? 'Blockchain and cryptocurrency training. Courses on forensic analysis, blockchain technology and crypto investigations.' : 'Formación en blockchain y criptomonedas. Cursos de análisis forense, tecnología blockchain e investigación crypto.',
+    alternates: {
+      canonical: 'https://labmoon.eu/' + locale + '/academia',
+      languages: {
+        es: 'https://labmoon.eu/es/academia',
+        en: 'https://labmoon.eu/en/academia',
+      },
+    },
+  };
+}
+
 export default async function Academia({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -49,9 +65,9 @@ export default async function Academia({ params }: Props) {
                 
                 <div className="p-10 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-2xl font-bold leading-tight text-[#141534] group-hover:text-[#ff6600] transition-colors">
-                      {course.title}
-                    </h3>
+                    <h2 className="text-2xl font-bold leading-tight text-[#141534] group-hover:text-[#ff6600] transition-colors">
+                       {course.title}
+                     </h2>
                   </div>
                   <p className="text-slate-500 mb-8 flex-1 font-medium leading-relaxed">
                     {course.description}
